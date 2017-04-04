@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>晓黑板体验站（老师）</title>
+        <link href="css/reset.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+        <link href="css/swiper.min.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-step="0"><img class="swiper-lazy" data-src="images/p-add-class-1.jpg"><div class="swiper-lazy-preloader"></div><div style="left:60%; top:43%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="0"><img class="swiper-lazy" data-src="images/p-add-class-2.jpg"><div class="swiper-lazy-preloader"></div><div style="left:70%; top:23%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="0"><img class="swiper-lazy" data-src="images/p-add-class-3.jpg"><div class="swiper-lazy-preloader"></div><div style="left:60%; top:74%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="0"><img class="swiper-lazy" data-src="images/p-add-class-4.jpg"><div class="swiper-lazy-preloader"></div><div style="left:5%; top:89%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="1"><img class="swiper-lazy" data-src="images/p-check-msg-1.jpg"><div class="swiper-lazy-preloader"></div><div style="left:71%; top:36%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="1"><img class="swiper-lazy" data-src="images/p-check-msg-2.jpg"><div class="swiper-lazy-preloader"></div><div style="left:44%; top:36%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="2"><img class="swiper-lazy" data-src="images/p-join-discuss-1.jpg"><div class="swiper-lazy-preloader"></div><div style="left:16%; top:29%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="2"><img class="swiper-lazy" data-src="images/p-join-discuss-2.jpg"><div class="swiper-lazy-preloader"></div><div style="left:-1%; top:1%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="3"><img class="swiper-lazy" data-src="images/p-join-check-1.jpg"><div class="swiper-lazy-preloader"></div><div style="left:17%; top:65%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="3"><img class="swiper-lazy" data-src="images/p-join-check-2.jpg"><div class="swiper-lazy-preloader"></div><div style="left:77%; top:2%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="4"><img class="swiper-lazy" data-src="images/p-finish-1.jpg"><div class="swiper-lazy-preloader"></div><div style="left:54%; top:89%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="4"><img class="swiper-lazy" data-src="images/p-finish-2.jpg"><div class="swiper-lazy-preloader"></div><div style="left:78%; top:2%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="4"><img class="swiper-lazy" data-src="images/p-finish-3.jpg"><div class="swiper-lazy-preloader"></div><div style="left:60%; top:38%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="4"><img class="swiper-lazy" data-src="images/p-finish-4.jpg"><div class="swiper-lazy-preloader"></div><div style="left:0; top:3%;" class="finger"></div></div>
+                    <div class="swiper-slide" data-step="4">
+                        <div class="finish">
+                            <h1>恭喜您！晓黑板家长用户的基本功能已经全部体验完成啦！ 更多功能等你发现！</h1>
+                            <a href="javascript:void(0);" class="restart"><img src="images/restart.png">再体验一遍</a>
+                            <a href="index.html" class="other">体验其他身份</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function(){
+                resizeContainer();
+
+                window.swiper = new Swiper('.swiper-container', {
+                    preloadImages: false,
+                    lazyLoading: true
+                });
+
+                $(window).on('onorientationchange' in window ? 'orientationchange' : 'resize', function(){
+                    resizeContainer();
+                    swiper.update(true);
+                });
+            });
+
+            // resizeContainer
+            function resizeContainer() {
+                var container = $('.container');
+                var swiper = $('.swiper-container');
+
+                var cWidth = container.width();
+                var cHeight = container.height();
+
+                var staticRatio = 0.563;
+                var windowRatio = (cWidth / cHeight).toFixed(3);
+
+                if (windowRatio > staticRatio) {
+                    var currentWidth = parseInt(cHeight * staticRatio);
+                    swiper.width(currentWidth);
+                    swiper.height(cHeight);
+                    swiper.css({
+                        marginTop: 0,
+                        marginLeft: -(currentWidth / 2),
+                        left: '50%',
+                        top: 0,
+                    });
+                } else if (windowRatio < staticRatio) {
+                    var currentHeight = parseInt(cWidth / staticRatio);
+                    swiper.width(cWidth);
+                    swiper.height(currentHeight);
+                    swiper.css({
+                        marginTop: -(currentHeight / 2),
+                        marginLeft: 0,
+                        left: 0,
+                        top: '50%',
+                    });
+                } else {
+                    swiper.width(cWidth);
+                    swiper.height(cHeight);
+                    swiper.css({
+                        marginTop: 0,
+                        marginLeft: 0,
+                        left: 0,
+                        top: 0,
+                    });
+                }
+            }
+
+        </script>
+    </body>
+</html>
